@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-poppins), 'Poppins', system-ui, sans-serif;
+    color: #11141C;
+    background-color: #FFFFFF;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-poppins), 'Poppins', system-ui, sans-serif;
+    font-weight: 600;
+    color: #11141C;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-5 sm:px-8 lg:px-12;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center bg-brand-green text-[#11141C] font-semibold px-6 py-3 rounded-lg transition-all duration-200;
+  }
+
+  .btn-primary:hover {
+    @apply bg-[#11141C] text-brand-green;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center bg-transparent text-[#11141C] font-semibold px-6 py-3 rounded-lg border-[1.5px] border-[#11141C] transition-all duration-200;
+  }
+
+  .btn-outline:hover {
+    @apply bg-[#11141C] text-white;
+  }
+
+  .section-padding {
+    @apply py-20 md:py-28;
+  }
+
+  .section-padding-sm {
+    @apply py-14 md:py-20;
+  }
+}
