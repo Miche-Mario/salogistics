@@ -34,8 +34,8 @@ export default function HowItWorksPage() {
           {BUYER_STEPS.map((step, i) => (
             <div key={i} className="p-6 rounded-2xl" style={{ border: "1.5px solid #E8E8E8" }}>
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#3DFF7F" }}>
-                  <step.icon className="w-4 h-4" style={{ color: "#11141C" }} />
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#0047AB" }}>
+                  <step.icon className="w-4 h-4" style={{ color: "#FFFFFF" }} />
                 </div>
                 <span className="text-xs font-bold" style={{ color: "#999" }}>0{i + 1}</span>
               </div>
@@ -51,7 +51,7 @@ export default function HowItWorksPage() {
             <div key={i} className="p-6 rounded-2xl" style={{ border: "1.5px solid #E8E8E8" }}>
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#11141C" }}>
-                  <step.icon className="w-4 h-4" style={{ color: "#3DFF7F" }} />
+                  <step.icon className="w-4 h-4" style={{ color: "#0047AB" }} />
                 </div>
                 <span className="text-xs font-bold" style={{ color: "#999" }}>0{i + 1}</span>
               </div>

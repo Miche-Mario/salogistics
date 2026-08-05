@@ -121,8 +121,8 @@ export default function CookiesPage() {
                       <span
                         className="px-2 py-0.5 rounded text-xs font-semibold"
                         style={{
-                          backgroundColor: row.type === "Essential" ? "#3DFF7F" : "#F7F7F5",
-                          color: "#11141C",
+                          backgroundColor: row.type === "Essential" ? "#0047AB" : "#F7F7F5",
+                          color: row.type === "Essential" ? "#FFFFFF" : "#11141C",
                         }}
                       >
                         {row.type}

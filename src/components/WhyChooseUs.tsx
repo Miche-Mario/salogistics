@@ -42,7 +42,7 @@ export default function WhyChooseUs() {
         {/* Header */}
         <Reveal className="mb-16">
           <p
-            style={{ color: "#3DFF7F", fontFamily: "Poppins", fontWeight: 600, letterSpacing: "0.1em" }}
+            style={{ color: "#0047AB", fontFamily: "Poppins", fontWeight: 600, letterSpacing: "0.1em" }}
             className="text-xs uppercase tracking-widest mb-4"
           >
             Why SA-Errandlogistics
@@ -63,7 +63,7 @@ export default function WhyChooseUs() {
               className="p-8 group transition-colors duration-300 hover:bg-[#1A1D25]"
               style={{ backgroundColor: "#11141C" }}
             >
-              <div style={{ color: "#3DFF7F", fontWeight: 700 }} className="text-sm mb-6">
+              <div style={{ color: "#0047AB", fontWeight: 700 }} className="text-sm mb-6">
                 {String(i + 1).padStart(2, "0")}
               </div>
               <h3 style={{ color: "#FFFFFF", fontWeight: 600 }} className="text-lg mb-3">

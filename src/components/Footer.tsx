@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { COMPANY } from "@/lib/constants";
 
 const LINKS = {
   Marketplace: [
@@ -43,10 +44,22 @@ export default function Footer() {
             <p style={{ color: "#666", fontSize: "0.85rem", lineHeight: 1.7 }}>
               Connect buyers and sellers across Nigeria, Ghana & Benin Republic.
             </p>
-            <div className="flex gap-2 mt-5">
-              {["🇳🇬", "🇬🇭", "🇧🇯"].map((flag) => (
-                <span key={flag} className="text-xl">{flag}</span>
-              ))}
+            <div className="mt-5 space-y-2" style={{ color: "#888", fontSize: "0.8rem", lineHeight: 1.6 }}>
+              <p>
+                <span style={{ color: "#AAA" }}>BN </span>
+                {COMPANY.bnNumber} · {COMPANY.businessType}
+              </p>
+              <p>{COMPANY.address}</p>
+              <p>
+                <a href={`mailto:${COMPANY.email}`} className="hover:text-white transition-colors">
+                  {COMPANY.email}
+                </a>
+              </p>
+              <p>
+                <a href={COMPANY.phoneHref} className="hover:text-white transition-colors">
+                  {COMPANY.phone}
+                </a>
+              </p>
             </div>
           </div>
 
@@ -74,7 +87,7 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8">
           <p style={{ color: "#444", fontSize: "0.8rem" }}>
-            © 2026 SA-Errandlogistics Marketplace. All rights reserved.
+            © 2026 {COMPANY.name}. Registered {COMPANY.registeredDate}. All rights reserved.
           </p>
           <div className="flex gap-6">
             {[

@@ -1,12 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowRight, Eye, EyeOff } from "lucide-react";
 import { useCountry, COUNTRIES, CountryCode } from "@/contexts/CountryContext";
+import { signIn } from "@/lib/auth";
 
-export default function RegisterPage() {
+function RegisterForm() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirect") || "/";
   const [type, setType] = useState<"buyer" | "seller">("buyer");
   const [showPassword, setShowPassword] = useState(false);
   const { setCountryCode } = useCountry();
@@ -21,7 +26,8 @@ export default function RegisterPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setCountryCode(form.country);
-    alert("Account created! Welcome to SA-Errandlogistics.");
+    signIn({ email: form.email, name: form.name });
+    router.push(redirectTo);
   };
 
   return (
@@ -50,7 +56,7 @@ export default function RegisterPage() {
           </h1>
           <p style={{ color: "#888" }} className="text-sm mb-8">
             Already have one?{" "}
-            <Link href="/login" style={{ color: "#11141C", fontWeight: 600 }}>
+            <Link href={`/login?redirect=${encodeURIComponent(redirectTo)}`} style={{ color: "#11141C", fontWeight: 600 }}>
               Sign in
             </Link>
           </p>
@@ -93,7 +99,7 @@ export default function RegisterPage() {
                   color: "#11141C",
                   fontFamily: "Poppins",
                 }}
-                onFocus={(e) => (e.target.style.borderColor = "#3DFF7F")}
+                onFocus={(e) => (e.target.style.borderColor = "#0047AB")}
                 onBlur={(e) => (e.target.style.borderColor = "#E8E8E8")}
                 placeholder="e.g. Amara Okafor"
               />
@@ -116,7 +122,7 @@ export default function RegisterPage() {
                   color: "#11141C",
                   fontFamily: "Poppins",
                 }}
-                onFocus={(e) => (e.target.style.borderColor = "#3DFF7F")}
+                onFocus={(e) => (e.target.style.borderColor = "#0047AB")}
                 onBlur={(e) => (e.target.style.borderColor = "#E8E8E8")}
                 placeholder="you@example.com"
               />
@@ -166,7 +172,7 @@ export default function RegisterPage() {
                     color: "#11141C",
                     fontFamily: "Poppins",
                   }}
-                  onFocus={(e) => (e.target.style.borderColor = "#3DFF7F")}
+                  onFocus={(e) => (e.target.style.borderColor = "#0047AB")}
                   onBlur={(e) => (e.target.style.borderColor = "#E8E8E8")}
                   placeholder="8+ characters"
                 />
@@ -213,11 +219,19 @@ export default function RegisterPage() {
           >
             "I grew my business 3× after joining SA-Errandlogistics."
           </blockquote>
-          <p style={{ color: "#3DFF7F", fontFamily: "Poppins", fontSize: "0.85rem", fontWeight: 600 }}>
+          <p style={{ color: "#0047AB", fontFamily: "Poppins", fontSize: "0.85rem", fontWeight: 600 }}>
             Kwame M. — Seller since 2024
           </p>
         </div>
       </div>
     </div>
+  );
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense>
+      <RegisterForm />
+    </Suspense>
   );
 }

@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { InfoPageHero } from "@/components/InfoPage";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { COMPANY } from "@/lib/constants";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
@@ -15,7 +16,7 @@ export default function ContactPage() {
   };
 
   const inputClass =
-    "w-full px-4 py-3 rounded-xl text-sm outline-none transition-colors focus:border-[#3DFF7F]";
+    "w-full px-4 py-3 rounded-xl text-sm outline-none transition-colors focus:border-[#0047AB]";
   const inputStyle = { backgroundColor: "#F7F7F5", border: "1.5px solid #E8E8E8", color: "#11141C" };
 
   return (
@@ -76,17 +77,19 @@ export default function ContactPage() {
               {
                 icon: Mail,
                 title: "Email",
-                lines: ["support@sa-errandlogistics.com"],
+                lines: [COMPANY.email],
+                href: `mailto:${COMPANY.email}`,
               },
               {
                 icon: Phone,
                 title: "Phone",
-                lines: ["Nigeria: +234 801 234 5678", "Ghana: +233 20 123 4567", "Benin: +229 20 123 456"],
+                lines: [COMPANY.phone],
+                href: COMPANY.phoneHref,
               },
               {
                 icon: MapPin,
-                title: "Offices",
-                lines: ["Lagos, Nigeria", "Accra, Ghana", "Cotonou, Benin"],
+                title: "Registered office",
+                lines: [COMPANY.address],
               },
             ].map((item) => (
               <div
@@ -96,15 +99,26 @@ export default function ContactPage() {
               >
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{ backgroundColor: "#3DFF7F" }}
+                  style={{ backgroundColor: "#0047AB" }}
                 >
-                  <item.icon className="w-5 h-5" style={{ color: "#11141C" }} />
+                  <item.icon className="w-5 h-5" style={{ color: "#FFFFFF" }} />
                 </div>
                 <div>
                   <div className="font-semibold text-sm mb-1" style={{ color: "#11141C" }}>{item.title}</div>
-                  {item.lines.map((line) => (
-                    <div key={line} className="text-sm" style={{ color: "#666" }}>{line}</div>
-                  ))}
+                  {item.lines.map((line) =>
+                    item.href ? (
+                      <a
+                        key={line}
+                        href={item.href}
+                        className="block text-sm hover:opacity-70 transition-opacity"
+                        style={{ color: "#666" }}
+                      >
+                        {line}
+                      </a>
+                    ) : (
+                      <div key={line} className="text-sm" style={{ color: "#666" }}>{line}</div>
+                    )
+                  )}
                 </div>
               </div>
             ))}

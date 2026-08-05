@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { InfoPageHero, InfoLink } from "@/components/InfoPage";
@@ -81,15 +82,17 @@ export default function HelpPage() {
 
         <div
           className="mt-12 p-6 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
-          style={{ backgroundColor: "#3DFF7F" }}
+          style={{ backgroundColor: "#0047AB" }}
         >
           <div>
-            <p className="font-semibold" style={{ color: "#11141C" }}>Still need help?</p>
-            <p className="text-sm mt-1" style={{ color: "#11141C", opacity: 0.7 }}>
+            <p className="font-semibold" style={{ color: "#FFFFFF" }}>Still need help?</p>
+            <p className="text-sm mt-1" style={{ color: "#FFFFFF", opacity: 0.85 }}>
               Our support team is available Mon–Fri, 8am–6pm WAT.
             </p>
           </div>
-          <InfoLink href="/contact">Contact us →</InfoLink>
+          <Link href="/contact" className="font-semibold hover:opacity-80 transition-opacity" style={{ color: "#FFFFFF" }}>
+            Contact us →
+          </Link>
         </div>
       </section>
 

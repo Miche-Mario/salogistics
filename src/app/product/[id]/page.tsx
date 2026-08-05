@@ -1,54 +1,17 @@
 "use client";
 
-import { use } from "react";
+import { use, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Heart, Share2, Star, Truck, ShieldCheck, MessageCircle, ArrowLeft } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AccountRequiredModal from "@/components/AccountRequiredModal";
+import ComingSoonModal from "@/components/ComingSoonModal";
 import { useCountry } from "@/contexts/CountryContext";
-
-// Mock data — replace with real API fetch
-const PRODUCTS: Record<string, {
-  name: string;
-  priceNGN: number;
-  rating: number;
-  reviews: number;
-  images: string[];
-  description: string;
-  seller: string;
-  sellerRating: number;
-  location: string;
-  badge?: string;
-}> = {
-  "1": {
-    name: "Premium Wireless Headphones",
-    priceNGN: 45000,
-    rating: 4.8,
-    reviews: 124,
-    images: [
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=700&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=700&auto=format&fit=crop&q=80",
-    ],
-    description:
-      "High-quality wireless headphones with active noise cancellation, 30-hour battery life, and premium sound quality. Perfect for music lovers and professionals.",
-    seller: "TechHub Lagos",
-    sellerRating: 4.9,
-    location: "Lagos, Nigeria",
-    badge: "Trending",
-  },
-};
-
-const DEFAULT_PRODUCT = {
-  name: "Product",
-  priceNGN: 25000,
-  rating: 4.7,
-  reviews: 56,
-  images: ["https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=700&auto=format&fit=crop&q=80"],
-  description: "Quality product from a verified seller. Fast delivery available.",
-  seller: "SA Seller",
-  sellerRating: 4.8,
-  location: "Nigeria",
-};
+import { useCart } from "@/contexts/CartContext";
+import { getProduct } from "@/lib/products";
+import { isLoggedIn } from "@/lib/auth";
 
 export default function ProductPage({
   params,
@@ -56,17 +19,43 @@ export default function ProductPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = use(params);
-  const product = PRODUCTS[id] ?? { ...DEFAULT_PRODUCT, name: `Product #${id}` };
+  const router = useRouter();
+  const product = getProduct(id);
   const { formatPrice } = useCountry();
-  const [activeImg, setActiveImg] = (typeof window !== "undefined"
-    ? [0, () => {}]
-    : [0, () => {}]) as [number, (n: number) => void];
+  const { addItem } = useCart();
+  const [accountModal, setAccountModal] = useState(false);
+  const [comingSoon, setComingSoon] = useState<string | null>(null);
+
+  if (!product) {
+    return (
+      <div style={{ fontFamily: "Poppins" }}>
+        <Header />
+        <main className="container-custom py-20 text-center">
+          <h1 className="text-2xl font-bold mb-4">Product not found</h1>
+          <Link href="/shop" className="btn-primary">Back to Shop</Link>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  const handleAddToCart = () => {
+    addItem(product);
+  };
+
+  const handleBuyNow = () => {
+    if (!isLoggedIn()) {
+      setAccountModal(true);
+      return;
+    }
+    addItem(product);
+    router.push("/cart");
+  };
 
   return (
     <div style={{ fontFamily: "Poppins" }}>
       <Header />
       <main className="container-custom py-10">
-        {/* Breadcrumb */}
         <Link
           href="/shop"
           className="inline-flex items-center gap-2 text-sm mb-8 hover:opacity-60 transition-opacity"
@@ -77,7 +66,6 @@ export default function ProductPage({
         </Link>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Images */}
           <div className="space-y-3">
             <div
               className="rounded-2xl overflow-hidden"
@@ -104,12 +92,11 @@ export default function ProductPage({
             )}
           </div>
 
-          {/* Info */}
           <div className="space-y-6">
             {product.badge && (
               <span
                 className="inline-block px-3 py-1 rounded-lg text-xs font-semibold"
-                style={{ backgroundColor: "#3DFF7F", color: "#11141C" }}
+                style={{ backgroundColor: "#0047AB", color: "#FFFFFF" }}
               >
                 {product.badge}
               </span>
@@ -122,14 +109,13 @@ export default function ProductPage({
               {product.name}
             </h1>
 
-            {/* Rating */}
             <div className="flex items-center gap-3">
               <div className="flex gap-0.5">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
                     className="w-4 h-4 fill-current"
-                    style={{ color: i < Math.floor(product.rating) ? "#3DFF7F" : "#E8E8E8" }}
+                    style={{ color: i < Math.floor(product.rating) ? "#0047AB" : "#E8E8E8" }}
                   />
                 ))}
               </div>
@@ -138,7 +124,6 @@ export default function ProductPage({
               </span>
             </div>
 
-            {/* Price */}
             <div
               style={{ color: "#11141C", fontWeight: 700, letterSpacing: "-0.02em" }}
               className="text-4xl"
@@ -150,20 +135,27 @@ export default function ProductPage({
               {product.description}
             </p>
 
-            {/* Actions */}
             <div className="flex gap-3">
-              <button
-                className="btn-primary flex-1"
-              >
+              <button type="button" onClick={handleAddToCart} className="btn-primary flex-1">
                 Add to Cart
               </button>
+              <button type="button" onClick={handleBuyNow} className="btn-outline flex-1">
+                Buy Now
+              </button>
+            </div>
+
+            <div className="flex gap-3">
               <button
+                type="button"
+                onClick={() => setComingSoon("Wishlist")}
                 className="w-12 h-12 rounded-xl flex items-center justify-center transition-colors"
                 style={{ border: "1.5px solid #E8E8E8", color: "#11141C" }}
               >
                 <Heart className="w-5 h-5" />
               </button>
               <button
+                type="button"
+                onClick={() => setComingSoon("Share Product")}
                 className="w-12 h-12 rounded-xl flex items-center justify-center transition-colors"
                 style={{ border: "1.5px solid #E8E8E8", color: "#11141C" }}
               >
@@ -171,7 +163,6 @@ export default function ProductPage({
               </button>
             </div>
 
-            {/* Delivery info */}
             <div className="space-y-3 py-5" style={{ borderTop: "1px solid #E8E8E8" }}>
               {[
                 {
@@ -188,7 +179,7 @@ export default function ProductPage({
                 },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3">
-                  <item.icon className="w-4 h-4 flex-shrink-0" style={{ color: "#3DFF7F" }} />
+                  <item.icon className="w-4 h-4 flex-shrink-0" style={{ color: "#0047AB" }} />
                   <span style={{ color: "#666", fontSize: "0.85rem", fontFamily: "Poppins" }}>
                     {item.text}
                   </span>
@@ -196,7 +187,6 @@ export default function ProductPage({
               ))}
             </div>
 
-            {/* Seller */}
             <div
               className="flex items-center justify-between p-4 rounded-xl"
               style={{ backgroundColor: "#F7F7F5", border: "1px solid #E8E8E8" }}
@@ -204,7 +194,7 @@ export default function ProductPage({
               <div className="flex items-center gap-3">
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold"
-                  style={{ backgroundColor: "#3DFF7F", color: "#11141C" }}
+                  style={{ backgroundColor: "#0047AB", color: "#FFFFFF" }}
                 >
                   {product.seller[0]}
                 </div>
@@ -218,6 +208,8 @@ export default function ProductPage({
                 </div>
               </div>
               <button
+                type="button"
+                onClick={() => setComingSoon("Direct Messaging")}
                 className="text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
                 style={{ border: "1.5px solid #11141C", color: "#11141C" }}
               >
@@ -228,6 +220,17 @@ export default function ProductPage({
         </div>
       </main>
       <Footer />
+
+      <AccountRequiredModal
+        open={accountModal}
+        redirectTo={`/product/${id}`}
+        onClose={() => setAccountModal(false)}
+      />
+      <ComingSoonModal
+        open={comingSoon !== null}
+        feature={comingSoon ?? ""}
+        onClose={() => setComingSoon(null)}
+      />
     </div>
   );
 }

@@ -58,7 +58,7 @@ export default function Testimonials() {
                   <Star
                     key={j}
                     className="w-4 h-4 fill-current"
-                    style={{ color: "#3DFF7F" }}
+                    style={{ color: "#0047AB" }}
                   />
                 ))}
               </div>

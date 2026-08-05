@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { InfoPageHero, InfoBlock } from "@/components/InfoPage";
+import { COMPANY } from "@/lib/constants";
 
 export default function AboutPage() {
   return (
@@ -10,10 +11,24 @@ export default function AboutPage() {
       <InfoPageHero
         label="About"
         title="Connecting West Africa, one trade at a time."
-        description="SA-Errandlogistics is a marketplace that helps buyers and sellers in Nigeria, Ghana, and Benin discover each other, communicate directly, and arrange delivery — without us getting in the middle of your deal."
+        description={`${COMPANY.name} is a registered trading business in Nigeria, helping buyers and sellers discover each other, communicate directly, and arrange delivery across West Africa.`}
       />
 
       <section className="container-custom max-w-3xl pb-20">
+        <InfoBlock title="Company details">
+          <p><strong>Business name:</strong> {COMPANY.name}</p>
+          <p><strong>BN number:</strong> {COMPANY.bnNumber}</p>
+          <p><strong>Registered:</strong> {COMPANY.registeredDate}</p>
+          <p><strong>Business type:</strong> {COMPANY.businessType}</p>
+          <p><strong>Principal activity:</strong> {COMPANY.activity}</p>
+          <p><strong>Status:</strong> {COMPANY.status}</p>
+          <p><strong>Proprietor:</strong> {COMPANY.proprietor}</p>
+        </InfoBlock>
+
+        <InfoBlock title="Registered address">
+          <p>{COMPANY.address}</p>
+        </InfoBlock>
+
         <InfoBlock title="What we do">
           <p>
             We provide the platform: product listings, seller profiles, messaging,
@@ -21,7 +36,7 @@ export default function AboutPage() {
             transactions directly with each other.
           </p>
           <p>
-            SA-Errandlogistics does not process payments between buyers and sellers.
+            {COMPANY.name} does not process payments between buyers and sellers.
             Our role is to make discovery, communication, and logistics simpler
             across borders.
           </p>

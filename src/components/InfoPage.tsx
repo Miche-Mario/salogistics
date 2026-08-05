@@ -13,7 +13,7 @@ export function InfoPageHero({ label, title, description, lastUpdated }: InfoPag
       <div className="container-custom max-w-3xl">
         <p
           className="text-xs uppercase tracking-widest mb-4 font-semibold"
-          style={{ color: "#3DFF7F" }}
+          style={{ color: "#0047AB" }}
         >
           {label}
         </p>

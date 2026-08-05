@@ -25,7 +25,7 @@ export default function Hero() {
               className="text-5xl md:text-6xl lg:text-7xl font-bold"
             >
               Buy & Sell{" "}
-              <span style={{ backgroundColor: "#3DFF7F", color: "#11141C", padding: "0 6px", borderRadius: "4px" }}>
+              <span style={{ backgroundColor: "#0047AB", color: "#FFFFFF", padding: "0 6px", borderRadius: "4px" }}>
                 freely
               </span>{" "}
               in West Africa.
@@ -78,10 +78,10 @@ export default function Hero() {
 
             <div
               className="absolute -right-4 top-1/3 rounded-xl px-4 py-3 shadow-xl"
-              style={{ backgroundColor: "#3DFF7F" }}
+              style={{ backgroundColor: "#0047AB" }}
             >
-              <div className="text-sm font-bold" style={{ color: "#11141C" }}>Fast Delivery</div>
-              <div className="text-xs" style={{ color: "#11141C", opacity: 0.7 }}>2–5 business days</div>
+              <div className="text-sm font-bold" style={{ color: "#FFFFFF" }}>Fast Delivery</div>
+              <div className="text-xs" style={{ color: "#FFFFFF", opacity: 0.85 }}>2–5 business days</div>
             </div>
           </FadeIn>
         </div>

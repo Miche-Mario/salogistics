@@ -1,17 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowRight, Eye, EyeOff } from "lucide-react";
+import ComingSoonModal from "@/components/ComingSoonModal";
+import { signIn } from "@/lib/auth";
 
-export default function LoginPage() {
+function LoginForm() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirect") || "/";
   const [showPassword, setShowPassword] = useState(false);
+  const [comingSoon, setComingSoon] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Welcome back!");
+    signIn({ email: form.email });
+    router.push(redirectTo);
   };
 
   const inputStyle = {
@@ -43,7 +51,7 @@ export default function LoginPage() {
           </h1>
           <p style={{ color: "#888" }} className="text-sm mb-10">
             Don't have an account?{" "}
-            <Link href="/register" style={{ color: "#11141C", fontWeight: 600 }}>
+            <Link href={`/register?redirect=${encodeURIComponent(redirectTo)}`} style={{ color: "#11141C", fontWeight: 600 }}>
               Create one
             </Link>
           </p>
@@ -60,7 +68,7 @@ export default function LoginPage() {
                 required
                 className="w-full px-4 py-3 rounded-xl text-sm outline-none"
                 style={inputStyle}
-                onFocus={(e) => (e.target.style.borderColor = "#3DFF7F")}
+                onFocus={(e) => (e.target.style.borderColor = "#0047AB")}
                 onBlur={(e) => (e.target.style.borderColor = "#E8E8E8")}
                 placeholder="you@example.com"
               />
@@ -71,9 +79,14 @@ export default function LoginPage() {
                 <label className="block text-xs font-medium" style={{ color: "#11141C" }}>
                   Password
                 </label>
-                <Link href="/forgot-password" className="text-xs" style={{ color: "#888" }}>
+                <button
+                  type="button"
+                  onClick={() => setComingSoon(true)}
+                  className="text-xs"
+                  style={{ color: "#888" }}
+                >
                   Forgot password?
-                </Link>
+                </button>
               </div>
               <div className="relative">
                 <input
@@ -83,7 +96,7 @@ export default function LoginPage() {
                   required
                   className="w-full px-4 py-3 rounded-xl text-sm outline-none pr-12"
                   style={inputStyle}
-                  onFocus={(e) => (e.target.style.borderColor = "#3DFF7F")}
+                  onFocus={(e) => (e.target.style.borderColor = "#0047AB")}
                   onBlur={(e) => (e.target.style.borderColor = "#E8E8E8")}
                   placeholder="Your password"
                 />
@@ -128,6 +141,20 @@ export default function LoginPage() {
           </p>
         </div>
       </div>
+
+      <ComingSoonModal
+        open={comingSoon}
+        feature="Password Recovery"
+        onClose={() => setComingSoon(false)}
+      />
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginForm />
+    </Suspense>
   );
 }

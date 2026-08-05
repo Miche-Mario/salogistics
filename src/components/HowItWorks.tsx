@@ -44,7 +44,7 @@ export default function HowItWorks() {
         {/* Header */}
         <Reveal className="mb-16">
           <p
-            style={{ color: "#3DFF7F", fontFamily: "Poppins", fontWeight: 600, letterSpacing: "0.1em" }}
+            style={{ color: "#0047AB", fontFamily: "Poppins", fontWeight: 600, letterSpacing: "0.1em" }}
             className="text-xs uppercase tracking-widest mb-4"
           >
             The Process
@@ -69,7 +69,7 @@ export default function HowItWorks() {
                 border: "1.5px solid transparent",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = "#3DFF7F";
+                (e.currentTarget as HTMLElement).style.borderColor = "#0047AB";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.borderColor = "transparent";
@@ -87,7 +87,7 @@ export default function HowItWorks() {
                     letterSpacing: "-0.04em",
                     transition: "color 0.2s",
                   }}
-                  className="group-hover:text-green-300"
+                  className="group-hover:text-primary-300"
                 >
                   {step.number}
                 </span>

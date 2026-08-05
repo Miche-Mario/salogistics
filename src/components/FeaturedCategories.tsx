@@ -109,9 +109,9 @@ export default function FeaturedCategories() {
                 {/* Arrow on hover */}
                 <div
                   className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ backgroundColor: "#3DFF7F" }}
+                  style={{ backgroundColor: "#0047AB" }}
                 >
-                  <ArrowRight className="w-4 h-4" style={{ color: "#11141C" }} />
+                  <ArrowRight className="w-4 h-4" style={{ color: "#FFFFFF" }} />
                 </div>
               </Link>
             </Reveal>

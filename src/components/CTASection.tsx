@@ -6,14 +6,14 @@ import { ArrowRight } from "lucide-react";
 
 export default function CTASection() {
   return (
-    <section className="section-padding-sm" style={{ backgroundColor: "#3DFF7F" }}>
+    <section className="section-padding-sm" style={{ backgroundColor: "#0047AB" }}>
       <div className="container-custom">
         <Reveal className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
             <h2
               style={{
                 fontFamily: "Poppins",
-                color: "#11141C",
+                color: "#FFFFFF",
                 fontWeight: 700,
                 letterSpacing: "-0.03em",
                 lineHeight: 1.1,
@@ -23,7 +23,7 @@ export default function CTASection() {
               Start trading today.
             </h2>
             <p
-              style={{ fontFamily: "Poppins", color: "#11141C", opacity: 0.65 }}
+              style={{ fontFamily: "Poppins", color: "#FFFFFF", opacity: 0.85 }}
               className="text-base max-w-md"
             >
               Join thousands of buyers and sellers across West Africa. Free to sign up.
@@ -35,8 +35,8 @@ export default function CTASection() {
               href="/register"
               className="flex items-center gap-2 px-7 py-3.5 rounded-lg font-semibold text-sm transition-all duration-200"
               style={{
-                backgroundColor: "#11141C",
-                color: "#3DFF7F",
+                backgroundColor: "#FFFFFF",
+                color: "#0047AB",
                 fontFamily: "Poppins",
               }}
             >
@@ -48,8 +48,8 @@ export default function CTASection() {
               className="flex items-center gap-2 px-7 py-3.5 rounded-lg font-semibold text-sm transition-all duration-200"
               style={{
                 backgroundColor: "transparent",
-                color: "#11141C",
-                border: "1.5px solid #11141C",
+                color: "#FFFFFF",
+                border: "1.5px solid #FFFFFF",
                 fontFamily: "Poppins",
               }}
             >

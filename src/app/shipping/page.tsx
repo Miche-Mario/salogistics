@@ -47,9 +47,9 @@ export default function ShippingPage() {
             >
               <div
                 className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-                style={{ backgroundColor: "#3DFF7F" }}
+                style={{ backgroundColor: "#0047AB" }}
               >
-                <opt.icon className="w-5 h-5" style={{ color: "#11141C" }} />
+                <opt.icon className="w-5 h-5" style={{ color: "#FFFFFF" }} />
               </div>
               <h3 className="font-semibold mb-2" style={{ color: "#11141C" }}>{opt.title}</h3>
               <p className="text-sm leading-relaxed mb-3" style={{ color: "#666" }}>{opt.description}</p>
@@ -89,7 +89,7 @@ export default function ShippingPage() {
         </InfoBlock>
 
         <div className="flex items-center gap-3 p-5 rounded-2xl mt-6" style={{ backgroundColor: "#F7F7F5" }}>
-          <MapPin className="w-5 h-5 flex-shrink-0" style={{ color: "#3DFF7F" }} />
+          <MapPin className="w-5 h-5 flex-shrink-0" style={{ color: "#0047AB" }} />
           <p className="text-sm" style={{ color: "#666" }}>
             Questions about a specific delivery?{" "}
             <InfoLink href="/contact">Contact support</InfoLink> or message the seller directly.
