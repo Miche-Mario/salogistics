@@ -15,7 +15,7 @@ export const COMPANY = {
   status: "Active",
   address:
     "15, Ijo Mimo Street, Ijo Mimo Ibukun Orisun Iye Parish, Oluyole, Ibadan, Oyo State, Nigeria",
-  email: "lovelovesomuch101@gmail.com",
+  email: "Errand@errandlogistics.com",
   phone: "+234 907 565 2022",
   phoneHref: "tel:+2349075652022",
   proprietor: "Samson Ifeoluwa Adelani",

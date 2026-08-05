@@ -8,8 +8,7 @@ const STEPS = [
     title: "Browse",
     description:
       "Search thousands of products across Nigeria, Ghana, and Benin. Filter by location, price, and category.",
-    image:
-      "https://images.unsplash.com/photo-1607082349566-187342175e2f?w=600&auto=format&fit=crop&q=80",
+    image: "/assets/how-it-works/browse.png",
   },
   {
     number: "02",
@@ -17,23 +16,21 @@ const STEPS = [
     description:
       "Message sellers directly. Ask questions, negotiate prices, build trust before you buy.",
     image:
-      "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=600&auto=format&fit=crop&q=80",
   },
   {
     number: "03",
     title: "Choose delivery",
     description:
       "Pick seller delivery or SA-Errandlogistics fast shipping. Track your order end-to-end.",
-    image:
-      "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=600&auto=format&fit=crop&q=80",
+    image: "/assets/how-it-works/delivery.png",
   },
   {
     number: "04",
     title: "Agree & receive",
     description:
       "Finalize price and delivery with the seller, arrange payment directly, and track your order until it arrives.",
-    image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&auto=format&fit=crop&q=80",
+    image: "/assets/how-it-works/agree-receive.png",
   },
 ];
 
