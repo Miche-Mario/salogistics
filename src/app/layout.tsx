@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: "SA-Errandlogistics — Marketplace West Africa",
   description:
     "Shop and sell across Nigeria, Ghana, and Benin Republic. Direct messaging, flexible delivery — payments handled between you and the seller.",
+  other: {
+    "facebook-domain-verification": "17v043e295ybvjzbcw9qekb1ovnhfb",
+  },
 };
 
 export default function RootLayout({
